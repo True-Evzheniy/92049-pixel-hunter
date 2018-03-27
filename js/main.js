@@ -17,37 +17,42 @@
     mainNode.appendChild(clonedNode);
   };
 
-  renderScreen(currentScreen);
+  document.querySelector(`.intro__asterisk`).addEventListener(`click`, handleStart);
 
-  body.addEventListener(`click`, handleArrowClick);
+  function handleStart() {
+    body.addEventListener(`click`, handleArrowClick);
+    document.addEventListener(`keydown`, handleShortcut);
+    document.addEventListener(`keyup`, handleAltKeyup);
 
-  document.addEventListener(`keydown`, handleShortcut);
+    renderScreen(0);
+  }
+
 
   function handleArrowClick(event) {
     let {target} = event;
 
     while (target !== body) {
       if (target.className.includes(`greeting__continue`)) {
-        handleNextScreen();
+        showNextScreen();
         return;
       }
 
       if (target.className.includes(`back`)) {
-        handlePreviosScreen();
+        showPreviosScreen();
         return;
       }
       target = target.parentNode;
     }
   }
 
-  function handleNextScreen() {
+  function showNextScreen() {
     if (currentScreen < templates.length - 1) {
       currentScreen++;
       renderScreen(currentScreen);
     }
   }
 
-  function handlePreviosScreen() {
+  function showPreviosScreen() {
     if (currentScreen > 0) {
       currentScreen--;
       renderScreen(currentScreen);
@@ -62,11 +67,17 @@
     }
 
     if (keyCode === KEY_CODES.ARROW_LEFT && altPressed) {
-      handlePreviosScreen();
+      showPreviosScreen();
     }
 
     if (keyCode === KEY_CODES.ARROW_RIGHT && altPressed) {
-      handleNextScreen();
+      showNextScreen();
+    }
+  }
+
+  function handleAltKeyup(event) {
+    if (event.keyCode === KEY_CODES.ALT) {
+      altPressed = false;
     }
   }
 })();
