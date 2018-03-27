@@ -6,7 +6,6 @@
   };
   const templates = [...document.querySelectorAll(`template`)];
   const mainNode = document.querySelector(`main.central`);
-  const body = document.querySelector(`body`);
   let altPressed = false;
   let currentScreen = 0;
 
@@ -20,7 +19,7 @@
   document.querySelector(`.intro__asterisk`).addEventListener(`click`, handleStart);
 
   function handleStart() {
-    body.addEventListener(`click`, handleArrowClick);
+    document.addEventListener(`click`, handleArrowClick);
     document.addEventListener(`keydown`, handleShortcut);
     document.addEventListener(`keyup`, handleAltKeyup);
 
@@ -31,7 +30,7 @@
   function handleArrowClick(event) {
     let {target} = event;
 
-    while (target !== body) {
+    while (target !== document) {
       if (target.className.includes(`greeting__continue`)) {
         showNextScreen();
         return;
