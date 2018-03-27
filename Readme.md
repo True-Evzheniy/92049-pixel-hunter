@@ -1,7 +1,7 @@
 # Личный проект «Пиксель хантер» [![Build status][travis-image]][travis-url]
 
 * Студент: [Евгений Артамонов](https://up.htmlacademy.ru/ecmascript/4/user/92049).
-* Наставник: [Вадим Горбачев](https://htmlacademy.ru/profile/id242361).
+* Наставник: [Дмитрий Донецкий](https://htmlacademy.ru/profile/id497669).
 
 ---
 
