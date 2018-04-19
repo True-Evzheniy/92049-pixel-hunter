@@ -5,6 +5,8 @@ import game from './game.js';
 import getHeader from './header.js';
 import footer from './footer';
 import {INITIAL_STATE} from './data/state.js';
+import {levels} from './data/data.js';
+import {LEVEL_TIME, MAX_LIVES} from './constants.js';
 
 
 const getRules = () => {
@@ -12,12 +14,12 @@ const getRules = () => {
   ${getHeader({backButton: true})}
   <div class="rules">
   <h1 class="rules__title">Правила</h1>
-  <p class="rules__description">Угадай 10 раз для каждого изображения фото <img
+  <p class="rules__description">Угадай ${levels.length} раз для каждого изображения фото <img
     src="img/photo_icon.png" width="16" height="16"> или рисунок <img
     src="img/paint_icon.png" width="16" height="16" alt="">.<br>
     Фотографиями или рисунками могут быть оба изображения.<br>
-    На каждую попытку отводится 30 секунд.<br>
-    Ошибиться можно не более 3 раз.<br>
+    На каждую попытку отводится ${LEVEL_TIME} секунд.<br>
+    Ошибиться можно не более ${MAX_LIVES} раз.<br>
     <br>
     Готовы?
   </p>
