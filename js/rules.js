@@ -1,9 +1,11 @@
 import getElementFromTemplate from './utils/getElementFromTemlate.js';
 import renderScreen from './utils/renderScreen.js';
 import handleBackButton from './utils/handleBackButton.js';
-import game1 from './game-1.js';
+import game from './game.js';
 import getHeader from './header.js';
 import footer from './footer';
+import {INITIAL_STATE} from './data/state.js';
+
 
 const getRules = () => {
   const template = `
@@ -50,7 +52,7 @@ const getRules = () => {
     event.preventDefault();
     form.removeEventListener(`submit`, handleSubmit);
     input.removeEventListener(`input`, handleInput);
-    renderScreen(game1());
+    renderScreen(game(INITIAL_STATE));
   }
 };
 
