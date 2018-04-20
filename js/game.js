@@ -8,17 +8,20 @@ import * as questionSingle from './question-single.js';
 import * as questionDouble from './question-double.js';
 import * as questionTriple from './question-triple.js';
 import {questions, QUESTION_TYPES, levels} from './data/data.js';
-import {canContinue, increaseLevel, decreaseLives} from './data/state.js';
+import {canContinue, increaseLevel, decreaseLives, addAnswer} from './data/state.js';
 import handleBackButton from './utils/handleBackButton.js';
+import makeAnswer from './utils/makeAnswer.js';
 
 
 const getGame = (state) => {
-  const goToNextStep = (isCorrectAnswer) => {
+
+  const goToNextStep = (success) => {
     let newState = state;
-    if (!isCorrectAnswer) {
+    if (!success) {
       newState = decreaseLives(state);
     }
     newState = increaseLevel(newState);
+    newState = addAnswer(makeAnswer(success, 15), newState);
 
     if (canContinue(newState)) {
       renderScreen(getGame(newState));
@@ -36,7 +39,7 @@ const getGame = (state) => {
     <div class="game">
       <p class="game__task">${question.title}</p>
       ${questionTemplate(question)}
-      ${getProgressBar()}
+      ${getProgressBar(state.answers)}
     </div>
     ${footer}
   `;
