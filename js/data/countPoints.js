@@ -2,7 +2,6 @@ import {POINTS, ANSWER_TYPES} from '../constants.js';
 
 
 const countPoints = (answers, lives) => {
-  console.log(lives);
   if (lives < 0) {
     return {total: -1};
   }
