@@ -1,5 +1,5 @@
 import renderScreen from './renderScreen.js';
-import greeting from '../greeting.js';
+import greeting from '../screens/greeting/greeting.js';
 
 
 const handleBackButton = (element) => {
