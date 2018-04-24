@@ -28,8 +28,6 @@ const getGame = (state) => {
     if (canContinue(newState)) {
       renderScreen(getGame(newState));
     } else {
-      console.log(newState);
-
       renderScreen(getStats(newState));
     }
   };
