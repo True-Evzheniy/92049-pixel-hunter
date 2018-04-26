@@ -30,8 +30,8 @@ export default class Application {
     renderScreen(game.element);
   }
 
-  static showStats() {
-    const stats = statsScreen();
+  static showStats(state) {
+    const stats = statsScreen(state);
 
     renderScreen(stats);
   }

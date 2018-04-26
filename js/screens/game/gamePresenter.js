@@ -90,19 +90,22 @@ export default class GamePresenter {
   }
 
   answer(success) {
+    this.model.increaseLevel();
+    const spendedTime = this.timer.getTime();
+    const answer = makeAnswer(success, spendedTime);
+    this.model.addAnswer(answer);
+
     if (!success) {
       this.model.decreaseLives();
     }
 
     if (!this.model.canContinue()) {
+      this.reset();
       Application.showStats(this.model.state);
       return;
+    } else {
+      this.updateContent();
+      this.updateHeader();
     }
-    const spendedTime = this.timer.getTime();
-    const answer = makeAnswer(success, spendedTime);
-    this.model.addAnswer(answer);
-    this.model.increaseLevel();
-    this.updateContent();
-    this.updateHeader();
   }
 }
