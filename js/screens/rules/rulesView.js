@@ -2,18 +2,10 @@ import AbstractView from '../../AbstractView.js';
 import footer from '../../footer.js';
 import {levels} from '../../data/data.js';
 import {LEVEL_TIME, MAX_LIVES} from '../../constants.js';
-import handleBackButton from '../../utils/handleBackButton.js';
-import getHeader from '../../header.js';
 
 export default class RulesView extends AbstractView {
-  constructor() {
-    super();
-    this.getHeader = getHeader;
-  }
-
   get template() {
     return `
-    ${this.getHeader({backButton: true})}
     <div class="rules">
     <h1 class="rules__title">Правила</h1>
     <p class="rules__description">Угадай ${levels.length} раз для каждого изображения фото <img
@@ -41,7 +33,6 @@ export default class RulesView extends AbstractView {
 
     this.form.addEventListener(`submit`, this.onSubmit);
     this.input.addEventListener(`input`, this.onInput);
-    handleBackButton(element);
   }
 
   unbind() {

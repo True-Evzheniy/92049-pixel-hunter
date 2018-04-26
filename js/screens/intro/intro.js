@@ -1,13 +1,12 @@
 import IntroView from './introView.js';
-import renderScreen from '../../utils/renderScreen.js';
-import greeting from '../greeting/greeting.js';
+import Application from '../../application.js';
 
 
 export default () => {
   const intro = new IntroView();
   intro.onClick = () => {
     intro.unbind();
-    renderScreen(greeting());
+    Application.showGreeting();
   };
 
   return intro.element;

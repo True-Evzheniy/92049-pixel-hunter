@@ -1,6 +1,6 @@
 class Timer {
   constructor(time) {
-    this.time = time;
+    this.time = this.startTime = time;
   }
 
   tick() {
@@ -13,6 +13,13 @@ class Timer {
     return this.time || `finished`;
   }
 
+  reset() {
+    this.time = this.startTime;
+  }
+
+  getTime() {
+    return this.time;
+  }
 }
 
 export default Timer;

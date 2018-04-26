@@ -1,7 +1,9 @@
-import {ANSWER_TYPES} from '../constants.js';
+import {ANSWER_TYPES, LEVEL_TIME} from '../constants.js';
 
-const makeAnswer = (success, spendedTime) => {
+const makeAnswer = (success, remainingTime) => {
+  const spendedTime = LEVEL_TIME - remainingTime;
   const type = getType(success, spendedTime);
+
 
   return {success, type};
 };

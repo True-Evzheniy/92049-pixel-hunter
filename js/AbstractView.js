@@ -1,14 +1,13 @@
 export default class AbstractView {
   static createElement(templateString) {
-    const template = document.createElement(`template`);
+    const template = document.createElement(`div`);
 
     template.innerHTML = templateString;
 
-    return template.content;
+    return template;
   }
 
-  get template() {
-  }
+  get template() {}
 
   render() {
     return AbstractView.createElement(this.template);
