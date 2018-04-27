@@ -1,26 +1,35 @@
 import RulesView from './rulesView.js';
-import renderScreen from '../../utils/renderScreen.js';
-import {INITIAL_STATE} from '../../data/state.js';
-import game from '../game/game.js';
+import Header from '../../header.js';
+import Application from '../../application.js';
 
-export default () => {
-  const rules = new RulesView();
-  rules.onInput = () => {
-    const {target} = event;
+export class Rules {
+  constructor() {
+    this.header = new Header({backButton: true});
+    this.header.onBackButtonClick = Application.showGreeting;
 
-    if (target.value.length) {
-      rules.button.disabled = false;
-    } else {
-      rules.button.disabled = true;
-    }
-  };
+    this.rules = new RulesView();
+    this.rules.onInput = () => {
+      const {target} = event;
 
-  rules.onSubmit = (event) => {
-    event.preventDefault();
+      if (target.value.length) {
+        this.rules.button.disabled = false;
+        this.value = target.value;
+      } else {
+        this.rules.button.disabled = true;
+      }
+    };
+    this.rules.onSubmit = (event) => {
+      event.preventDefault();
 
-    renderScreen(game(INITIAL_STATE));
-  };
+      Application.showGame(this.value);
+    };
 
+    this.root = document.createDocumentFragment();
+    this.root.appendChild(this.header.element);
+    this.root.appendChild(this.rules.element);
+  }
 
-  return rules.element;
-};
+  get element() {
+    return this.root;
+  }
+}

@@ -1,4 +1,3 @@
-import renderScreen from './utils/renderScreen.js';
-import intro from './screens/intro/intro.js';
+import Application from './application.js';
 
-renderScreen(intro());
+Application.showIntro();
