@@ -2,9 +2,11 @@ export const MAX_LIVES = 3;
 
 export const LEVEL_TIME = 30;
 
+export const LEVELS_QUANTITY = 10;
+
 export const ANSWERS = {
   PHOTO: `photo`,
-  PAINT: `paint`
+  PAINTING: `painting`
 };
 
 export const ANSWER_TYPES = {

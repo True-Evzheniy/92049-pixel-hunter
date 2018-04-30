@@ -1,14 +1,13 @@
 import AbstractView from '../../AbstractView.js';
 import footer from '../../footer.js';
-import {levels} from '../../data/data.js';
-import {LEVEL_TIME, MAX_LIVES} from '../../constants.js';
+import {LEVEL_TIME, MAX_LIVES, LEVELS_QUANTITY} from '../../constants.js';
 
 export default class RulesView extends AbstractView {
   get template() {
     return `
     <div class="rules">
     <h1 class="rules__title">Правила</h1>
-    <p class="rules__description">Угадай ${levels.length} раз для каждого изображения фото <img
+    <p class="rules__description">Угадай ${LEVELS_QUANTITY} раз для каждого изображения фото <img
       src="img/photo_icon.png" width="16" height="16"> или рисунок <img
       src="img/paint_icon.png" width="16" height="16" alt="">.<br>
       Фотографиями или рисунками могут быть оба изображения.<br>

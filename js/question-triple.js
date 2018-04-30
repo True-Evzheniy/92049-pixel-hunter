@@ -1,3 +1,5 @@
+import {ANSWERS} from './constants';
+
 export const questionTemplate = (question) => {
   const options = question.options.map((option)=> (`
    <div class="game__option">
@@ -19,6 +21,7 @@ export const handleActions = (node, question, goToNextStep) => {
 
   function handleAnswers(nodeElem) {
     const options = [...nodeElem.querySelectorAll(`.game__option`)];
+    const correctAnswer = getCorrectAnswer(question);
 
     options.forEach((option) => {
       option.addEventListener(`click`, showNextScreen);
@@ -29,10 +32,18 @@ export const handleActions = (node, question, goToNextStep) => {
       options.forEach((option, index) => {
         option.removeEventListener(`click`, showNextScreen);
         if (target === option) {
-          correct = index === question.correctAnswer;
+          correct = index === correctAnswer;
         }
       });
       goToNextStep(correct);
+    }
+
+    function getCorrectAnswer(questionEl) {
+      if (questionEl.question === `Найдите фото среди изображений`) {
+        return questionEl.options.findIndex((option) => option.type === ANSWERS.PHOTO);
+      }
+
+      return questionEl.options.findIndex((option) => option.type === ANSWERS.PAINTING);
     }
   }
 };

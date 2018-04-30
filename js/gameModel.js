@@ -1,17 +1,19 @@
 import {INITIAL_STATE, increaseLevel, decreaseLives, addAnswer} from "./data/state.js";
-import {levels} from './data/data.js';
+import {LEVELS_QUANTITY} from './constants.js';
+
 
 export default class GameModel {
-  constructor(playerName) {
+  constructor(playerName, data) {
     this.playerName = playerName;
+    this._data = data;
   }
 
   get state() {
     return this._state;
   }
 
-  get level() {
-    return this._state.level;
+  get question() {
+    return this._data[this._state.level];
   }
 
   restart() {
@@ -31,6 +33,6 @@ export default class GameModel {
   }
 
   canContinue() {
-    return this._state.level <= levels.length - 1 && this._state.lives >= 0;
+    return this._state.level <= LEVELS_QUANTITY - 1 && this._state.lives >= 0;
   }
 }
