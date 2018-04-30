@@ -8,7 +8,7 @@ export class Rules {
     this.header.onBackButtonClick = Application.showGreeting;
 
     this.rules = new RulesView();
-    this.rules.onInput = () => {
+    this.rules.onInput = (event) => {
       const {target} = event;
 
       if (target.value.length) {
