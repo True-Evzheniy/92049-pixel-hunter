@@ -3,7 +3,7 @@ import Header from "../../header.js";
 import Application from "../../application.js";
 import getProgressBar from '../../progressBar.js';
 
-import {questions, QUESTION_TYPES, levels} from "../../data/data.js";
+import {QUESTION_TYPES} from "../../data/data.js";
 import * as questionSingle from "../../question-single.js";
 import * as questionDouble from "../../question-double.js";
 import * as questionTriple from "../../question-triple.js";
@@ -44,8 +44,7 @@ export default class GamePresenter {
     return this.root;
   }
 
-  getQuestionModule() {
-    const type = this.getQuestionType();
+  getQuestionModule({type}) {
     const module = {
       [QUESTION_TYPES.SINGLE]: questionSingle,
       [QUESTION_TYPES.DOUBLE]: questionDouble,
@@ -53,10 +52,6 @@ export default class GamePresenter {
     };
 
     return module[type];
-  }
-
-  getQuestionType() {
-    return levels[this.model.level];
   }
 
   updateHeader() {
@@ -75,10 +70,10 @@ export default class GamePresenter {
 
   updateContent() {
     this.start();
-    const question = questions[this.getQuestionType()];
-    const {questionTemplate, handleActions} = this.getQuestionModule();
+    const {question} = this.model;
+    const {questionTemplate, handleActions} = this.getQuestionModule(question);
     const content = new GameView();
-    content.title = question.title;
+    content.title = question.question;
     content.questionTemplate = questionTemplate(question);
     content.progressBar = getProgressBar(this.model.state.answers);
     content.onActions = () =>
