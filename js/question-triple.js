@@ -39,11 +39,12 @@ export const handleActions = (node, question, goToNextStep) => {
     }
 
     function getCorrectAnswer(questionEl) {
+      let answer = ANSWERS.PAINTING;
       if (questionEl.question === `Найдите фото среди изображений`) {
-        return questionEl.options.findIndex((option) => option.type === ANSWERS.PHOTO);
+        answer = ANSWERS.PHOTO;
       }
 
-      return questionEl.options.findIndex((option) => option.type === ANSWERS.PAINTING);
+      return questionEl.options.findIndex((option) => option.correctAnswer === answer);
     }
   }
 };
