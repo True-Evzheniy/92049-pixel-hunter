@@ -96,7 +96,7 @@ export default class GamePresenter {
 
     if (!this.model.canContinue()) {
       this.reset();
-      Application.showStats(this.model.state);
+      Application.showStats(this.model.state, this.model.playerName);
       return;
     } else {
       this.updateContent();

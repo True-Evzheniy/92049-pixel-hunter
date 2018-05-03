@@ -1,4 +1,6 @@
-export default (number, points, progressBar) => {
+import AbstractView from '../../AbstractView';
+
+const getTemplate = (number, points, progressBar) => {
   if (points.total === -1) {
     return `
     <table class="result__table">
@@ -51,3 +53,18 @@ export default (number, points, progressBar) => {
     </table>
   `;
 };
+
+class Table extends AbstractView {
+  constructor(number, points, progressBar) {
+    super();
+    this.number = number;
+    this.points = points;
+    this.progressBar = progressBar;
+  }
+
+  get template() {
+    return getTemplate(this.number, this.points, this.progressBar);
+  }
+}
+
+export default Table;

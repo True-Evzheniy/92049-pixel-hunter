@@ -4,7 +4,7 @@ import {LEVELS_QUANTITY} from './constants.js';
 
 export default class GameModel {
   constructor(playerName, data) {
-    this.playerName = playerName;
+    this._name = playerName;
     this._data = data;
   }
 
@@ -14,6 +14,10 @@ export default class GameModel {
 
   get question() {
     return this._data[this._state.level];
+  }
+
+  get playerName() {
+    return this._name;
   }
 
   restart() {
