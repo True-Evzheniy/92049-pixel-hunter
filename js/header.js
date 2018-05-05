@@ -21,7 +21,7 @@ export default class Header extends AbstractView {
       : ``;
 
     const timerTemplate =
-      timer >= 0 ? `<h1 class="game__timer">${timer}</h1>` : ``;
+      timer >= 0 ? `<h1 class="game__timer ${timer <= 5 ? `game__timer--blink` : ``}">${timer}</h1>` : ``;
     const getLivesTemplate = () => {
       if (lives >= 0) {
         const emptyHeart = `<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="32" height="32">`;
