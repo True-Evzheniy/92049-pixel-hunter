@@ -1,0 +1,27 @@
+@import "fonts";
+@import "colors";
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(28, 206, 176, 0.9);
+  text-align: center;
+  @include regular-text;
+}
+
+.popup__buttons-box {
+  display: flex;
+  justify-content: space-around;
+}
+
+.popup__btn {
+  height: 50px;
+  width: 100px;
+  background-color: $main-red-color;
+  border: 0;
+  @include regular-text;
+  color: white;
+}

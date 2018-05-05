@@ -10,6 +10,7 @@ import * as questionTriple from "../../question-triple.js";
 import makeAnswer from "../../utils/makeAnswer.js";
 import Timer from '../../data/timer.js';
 import {LEVEL_TIME} from '../../constants.js';
+import Popup from '../../popup.js';
 
 export default class GamePresenter {
   constructor(model) {
@@ -59,8 +60,26 @@ export default class GamePresenter {
     const timer = this.timer.getTime();
     const header = new Header({backButton: true, lives, timer});
     header.onBackButtonClick = () => {
-      this.reset();
-      Application.showGreeting();
+      if (this.model.popup) {
+        return;
+      }
+      this.model.popup = true;
+
+      const popup = new Popup();
+      this.closePopup = () => {
+        document.body.removeChild(popup.element);
+        this.model.popup = false;
+      };
+
+      popup.onNoBtnClick = this.closePopup;
+
+      popup.onYesBtnClick = () => {
+        this.closePopup();
+        this.reset();
+        Application.showGreeting();
+      };
+
+      document.body.appendChild(popup.element);
     };
     if (this.header) {
       this.root.replaceChild(header.element, this.header.element);
@@ -97,6 +116,7 @@ export default class GamePresenter {
     if (!this.model.canContinue()) {
       this.reset();
       Application.showStats(this.model.state, this.model.playerName);
+      this.closePopup();
       return;
     } else {
       this.updateContent();

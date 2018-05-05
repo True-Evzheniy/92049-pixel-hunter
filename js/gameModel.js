@@ -20,6 +20,14 @@ export default class GameModel {
     return this._name;
   }
 
+  set popup(shown) {
+    this._popup = shown;
+  }
+
+  get popup() {
+    return this._popup;
+  }
+
   restart() {
     this._state = INITIAL_STATE;
   }
