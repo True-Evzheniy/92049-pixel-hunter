@@ -42,8 +42,8 @@ export default class Application {
     renderScreen(game.element);
   }
 
-  static showStats(state) {
-    const stats = statsScreen(state);
+  static showStats(state, playerName) {
+    const stats = statsScreen(state, playerName);
 
     renderScreen(stats);
   }
