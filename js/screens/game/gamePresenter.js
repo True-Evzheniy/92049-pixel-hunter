@@ -116,7 +116,9 @@ export default class GamePresenter {
     if (!this.model.canContinue()) {
       this.reset();
       Application.showStats(this.model.state, this.model.playerName);
-      this.closePopup();
+      if (this.model.popup) {
+        this.closePopup();
+      }
       return;
     } else {
       this.updateContent();
